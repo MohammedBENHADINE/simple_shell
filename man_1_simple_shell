@@ -1,0 +1,7 @@
+.TH HSH 1
+.SH NAME
+hsh \- simple shell
+.SH SYNOPSIS
+.B hsh
+.SH DESCRIPTION
+.B hsh shell-like commander for Linux
