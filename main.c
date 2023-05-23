@@ -1,9 +1,11 @@
 #include "simple_shell.h"
-
 /**
  * main - the main function of the hsh project
+ * @argc: number of args
+ * @argv: pointer on args
+ * @envp: pointer on env vars
  *
- * Return: 0 Always
+ * Return: 0 on Succcess, 8 on Always
  */
 int main(int argc, char *argv[], char *envp[])
 {
@@ -17,30 +19,27 @@ int main(int argc, char *argv[], char *envp[])
 	buffer = malloc(MAX_INPUT_SIZE);
 	if (!buffer)
 	{
-		printf("error");
-		exit(1);
+		perror("malloc");
+		exit(EXIT_FAILURE);
 	}
 	while (1)
 	{
 		printf("%s", prompt);
 		fflush(stdout);
-		if (fgets(buffer, size, stdin) == NULL)
-		{
-			printf("./shell: error reading from stdin");
-			exit(1);
-		}
+		if (getline(&buffer, &size, stdin) == -1)
+			exit(EXIT_FAILURE);
 		pid = fork();
 		if (pid == -1)
-			printf("./shell : can't fork\n");
+			perror("fork");
 		if (pid == 0)
 		{
 			token = strtok(buffer, "\n");
 			if (execve(token, argv, envp) == -1)
-				printf("./shell : No such file or directory\n");
+				printf("%s: No such file or directory\n", argv[0]);
 		}
 		else
 			wait(&status);
 	}
 	free(buffer);
-	return (0);
+	exit(EXIT_SUCCESS);
 }
