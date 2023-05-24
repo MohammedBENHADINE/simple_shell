@@ -11,7 +11,7 @@
 */
 char **parse(char *in)
 {
-	char *delimiters = " ";
+	char *delimiters = " \"";
 	char **token_arr = { NULL };
 	int n = str_len(in);
 

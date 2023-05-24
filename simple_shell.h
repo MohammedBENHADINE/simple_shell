@@ -36,15 +36,20 @@ int str_chr(const char *s, const char c);
 
 char *search_cmd(const char *);
 void free_td(char **grid);
+int check_input(char *in_str);
 
 int count_tokens(const char *str, const char *dlm);
 char **extract_tokens(const char *str, const char *dlm);
 
-char *get_cmd(char **, char *);
-char *get_args(char **);
+char *get_cmd_ia(char **, char *); /*interactive*/
+char *get_cmd_nia(char **, char *); /*non-interactive*/
 
-char *read_input(void);
+char *read_nia(void); /*non-interactive*/
+char *read_ia(void); /*interactive*/
+
 char **parse(char *);
-int execute(char **, char *);
+
+int execute_nia(char **, char *); /*non-interactive*/
+int execute_ia(char **, char *); /*interactive*/
 
 #endif

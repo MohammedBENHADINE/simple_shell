@@ -4,18 +4,18 @@
 #include <stdio.h>
 
 /**
- * execute - executes a command in a new process
+ * execute_nia - executes a command in a new process
  * @in_arr: command and argument list.
  * @self: pointer arg[0] argument.
  *
  * Return: 1 on exit command 0 otherwise.
 */
-int execute(char **in_arr, char *self)
+int execute_nia(char **in_arr, char *self)
 {
 	char *cmd = NULL;
 	int pid, status;
 
-	cmd = get_cmd(in_arr, self);
+	cmd = get_cmd_nia(in_arr, self);
 
 	if (cmd == NULL)
 		return (0);
