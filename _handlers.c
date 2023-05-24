@@ -9,9 +9,9 @@ void prompt_handler(void)
 {
 	if (isatty(STDIN_FILENO))
 	{
-		const char *prompt = "alx_shell[$] ";
+		const char *prompt = "#cisfun$";
 
-		write(STDOUT_FILENO, prompt, 13);
+		write(STDOUT_FILENO, prompt, 8);
 	}
 }
 
@@ -26,9 +26,9 @@ void handle_signal(int signal)
 {
 	if (signal == SIGINT)
 	{
-		const char *signal = "\nalx_shell[$] ";
+		const char *signal = "\n#cisfun$";
 
-		write(STDOUT_FILENO, signal, 14);
+		write(STDOUT_FILENO, signal, 9);
 	}
 }
 
