@@ -19,23 +19,17 @@ int main(int argc, char **argv)
 
 	while (1)
 	{
-		user_input = read_input();
-
-		if (check_input(user_input) == 0)
+		switch (isatty(STDIN_FILENO))
 		{
+		case 0: /*non-interactive mode*/
+			user_input = read_nia();
 			parsed_input = parse(user_input);
-			execute(parsed_input, argv[0]);
-		}
-
-		switch (check_input(user_input))
-		{
-		case 0:
-			parsed_input = parse(user_input);
-			execute(parsed_input, argv[0]);
+			execute_nia(parsed_input, argv[0]);
 			break;
-		case 2:
-			free(user_input);
-			exit(EXIT_SUCCESS);
+		case 1: /*interactive mode*/
+			user_input = read_ia();
+			parsed_input = parse(user_input);
+			execute_ia(parsed_input, argv[0]);
 			break;
 		}
 	}
