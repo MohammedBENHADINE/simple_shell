@@ -15,6 +15,9 @@ int execute_nia(char **in_arr, char *self)
 	char *cmd = NULL;
 	int pid, status;
 
+	if (in_arr == NULL)
+		return (0);
+
 	cmd = get_cmd_nia(in_arr, self);
 
 	if (cmd == NULL)

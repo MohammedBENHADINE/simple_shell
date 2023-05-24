@@ -32,9 +32,12 @@ int main(int argc, char **argv)
 			execute_ia(parsed_input, argv[0]);
 			break;
 		}
+
+		free_memory(parsed_input);
+		free(user_input);
 	}
 
-	free_td(parsed_input);
+	free_memory(parsed_input);
 	free(user_input);
 
 	return (0);

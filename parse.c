@@ -13,7 +13,21 @@ char **parse(char *in)
 {
 	char *delimiters = " \"";
 	char **token_arr = { NULL };
-	int n = str_len(in);
+	int n = 0;
+
+    if (in == NULL)
+        return (NULL);
+
+    if (_strcmp(in, "\n") == 0)
+        return (NULL);
+
+    if (_strcmp(in, "exit\n") == 0)
+    {
+        free(in);
+        exit(EXIT_SUCCESS);
+    }
+
+    n = str_len(in);
 
 	if (in[n - 1] == '\n')
 		in[n - 1] = '\0';
