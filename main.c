@@ -7,39 +7,37 @@
  *
  * Return: 0 on Succcess, 8 on Always
  */
-int main(int argc, char *argv[], char *envp[])
+int main(__attribute((unused)) int argc, char *argv[],char *envp[])
 {
-	char *buffer;
-	char prompt[] = "#Cisfun$ ";
-	char *token;
-	int status = argc;
-	size_t size = MAX_INPUT_SIZE;
-	pid_t pid;
+	char *buffer = NULL;
+	char **command = NULL;
+	size_t buffer_size = 0;
+	ssize_t checked_chars = 0;
+	int loops = 0;
 
-	buffer = malloc(MAX_INPUT_SIZE);
-	if (!buffer)
-	{
-		perror("malloc");
-		exit(EXIT_FAILURE);
-	}
 	while (1)
 	{
-		printf("%s", prompt);
-		fflush(stdout);
-		if (getline(&buffer, &size, stdin) == -1)
-			exit(EXIT_FAILURE);
-		pid = fork();
-		if (pid == -1)
-			perror("fork");
-		if (pid == 0)
-		{
-			token = strtok(buffer, "\n");
-			if (execve(token, argv, envp) == -1)
-				printf("%s: No such file or directory\n", argv[0]);
-		}
+		loops++;
+		prompt_handler();
+		signal(SIGINT, handle_signal);
+		checked_chars = getline(&buffer, &buffer_size, stdin);
+		if (checked_chars == EOF)
+			handle_eof(buffer);
+		else if (*buffer == '\n')
+			free(buffer);
 		else
-			wait(&status);
+		{
+			buffer[_strlen(buffer) - 1] = '\0';
+			command = tokenize(buffer, " \0");
+			free(buffer);
+			if (_strcmp(command[0], "exit") != 0)
+				handle_exit(command);
+			else if (_strcmp(command[0], "cd") != 0)
+				dir_changes(command[1]);
+			else
+				execute_child(command, argv[0], envp, loops);
+		}
+		fflush(stdin);
+		buffer = NULL, buffer_size = 0;
 	}
-	free(buffer);
-	exit(EXIT_SUCCESS);
 }

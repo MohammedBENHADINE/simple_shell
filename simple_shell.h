@@ -10,22 +10,22 @@
 #include <sys/stat.h>
 #include <errno.h>
 
-#define MAX_TOKEN 512
-#define MAX_INPUT_SIZE 1024
-
-/**
- * struct error - the list of error
- * @code: the error code
- * @txt: the error text
- * Description: this struct allow us to handle the different error
- * of all the project
- * We may call the code, add, move and fix the error in one place.
- */
-typedef struct error
-{
-	int code;
-	char *txt;
-} err_t;
-
-void error(int);
+void prompt_handler(void);
+void handle_signal(int signals);
+void handle_eof(char *buffer);
+void handle_exit(char **input_command);
+void execute_child(char **command, char *shell_name, char **envp, int loops);
+int dir_changes(const char *path);
+void execute_command(char **command, char *name, char **env, int cicles);
+void print_env(char **env);
+char **_dirsPATH(char **env);
+void command_error(char *name, int loops, char **command);
+char **tokenize(char *buffer, const char *delim);
+void free_memory(char **command);
+void freeMem_and_exit(char **command);
+int _strcmp(char *str1, char *str2);
+unsigned int _strlen(char *str);
+char *_strcpy(char *dest, char *src);
+int _strint(char *s);
+char *_strcat(char *dest, char *src);
 #endif
