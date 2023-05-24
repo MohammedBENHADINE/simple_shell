@@ -36,6 +36,7 @@ int str_chr(const char *s, const char c);
 
 char *search_cmd(const char *);
 void free_td(char **grid);
+int check_input(char *in_str);
 
 int count_tokens(const char *str, const char *dlm);
 char **extract_tokens(const char *str, const char *dlm);

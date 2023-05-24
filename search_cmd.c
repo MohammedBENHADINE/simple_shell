@@ -17,6 +17,9 @@ char *search_cmd(const char *str)
 	int i = 0;
 	struct stat st;
 
+	if (stat(str, &st) == 0)
+		return (str_dup(str));
+
 	str_arr = extract_tokens(getenv("PATH"), dlm);
 
 	while (str_arr[i] != NULL)
