@@ -1,4 +1,4 @@
-#include "simple_shell.h"
+#include "simple_hell.h"
 
 /**
  * _strcmp - This function compares two strings.
@@ -77,29 +77,35 @@ char *_strcat(char *dest, char *src)
 /**
  * _strint - This function converts a string to an integer.
  *
- * @str: The input string.
+ * @s: The input string.
  * Return: An integer from the conversion.
  */
-int _strint(char *str)
+int _strint(char *s)
 {
 	int sign = 1;
 	unsigned int total = 0;
+	char null_flag = 0;
 
-	if (str == NULL)
+	if (s == NULL)
 		return (0);
-
-	if (*str == '-')
+	while (*s)
 	{
-		sign = -1;
-		str++;
+		if (*s == '-')
+			sign *= -1;
+		if (*s >= '0' && *s <= '9')
+		{
+			null_flag = 1;
+			total = total * 10 + (*s - '0');
+		}
+		else if (*s < '0' || *s > '9')
+		{
+			if (null_flag == 1)
+				break;
+		}
+		s++;
 	}
-
-	while (*str >= '0' && *str <= '9')
-	{
-		total = total * 10 + (*str - '0');
-		str++;
-	}
-
-	return (sign * total);
+	if (sign < 0)
+		total = (-1 * (total));
+	return (total);
 }
 
