@@ -22,7 +22,6 @@ void free_memory(char **command)
 	free(command);
 }
 
-
 /**
  * freeMem_and_exit - A function frees all the memory
  * allocated and exit.

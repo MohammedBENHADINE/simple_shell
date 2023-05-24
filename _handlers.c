@@ -15,7 +15,6 @@ void prompt_handler(void)
 	}
 }
 
-
 /**
  * handle_signal - A signal handler function to handle cancel signal.
  *
@@ -50,7 +49,6 @@ void handle_exit(char **input_command)
 	exit(status);
 }
 
-
 /**
  * handle_eof - A handle_eof function that chaecks if buffer is EOF or not
  *
@@ -70,4 +68,3 @@ void handle_eof(char *buffer)
 
 	exit(EXIT_SUCCESS);
 }
-

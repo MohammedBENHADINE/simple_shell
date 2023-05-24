@@ -28,4 +28,23 @@ unsigned int _strlen(char *str);
 char *_strcpy(char *dest, char *src);
 int _strint(char *s);
 char *_strcat(char *dest, char *src);
+
+int str_len(const char *s);
+char *str_dup(const char *s);
+char *str_concat(const char *s1, const char *s2);
+int str_chr(const char *s, const char c);
+
+char *search_cmd(const char *);
+void free_td(char **grid);
+
+int count_tokens(const char *str, const char *dlm);
+char **extract_tokens(const char *str, const char *dlm);
+
+char *get_cmd(char **, char *);
+char *get_args(char **);
+
+char *read_input(void);
+char **parse(char *);
+int execute(char **, char *);
+
 #endif

@@ -36,7 +36,6 @@ void execute_child(char **command, char *name, char **envp, int loops)
 	free_memory(command);
 }
 
-
 /**
   * dir_changes - This function changes the current working directory.
   *
@@ -61,4 +60,3 @@ int dir_changes(const char *path)
 
 	return (1);
 }
-
