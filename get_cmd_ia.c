@@ -13,13 +13,16 @@ char *get_cmd_ia(char **in, char *self)
 {
 	char *cmd = NULL;
 
+	
+
 	cmd = search_cmd(in[0]);
 
-	if (cmd == NULL)
+	if (cmd == NULL || in[1] != NULL)
 	{
+		errno = 2;
 		fflush(stdout);
 		perror(self);
-		free_td(in);
+
 		return (NULL);
 	}
 

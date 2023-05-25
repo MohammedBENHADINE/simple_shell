@@ -25,9 +25,14 @@ void handle_signal(int signal)
 {
 	if (signal == SIGINT)
 	{
-		const char *signal = "\n#cisfun$";
+		/**
+		 * const char *signal = "\n#cisfun$";
 
 		write(STDOUT_FILENO, signal, 9);
+		*/
+		fflush(stdout);
+		write(STDOUT_FILENO, "\n", 1);
+		exit(EXIT_SUCCESS);
 	}
 }
 

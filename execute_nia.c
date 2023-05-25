@@ -21,7 +21,11 @@ int execute_nia(char **in_arr, char *self)
 	cmd = get_cmd_nia(in_arr, self);
 
 	if (cmd == NULL)
-		return (0);
+	{
+		free_memory(in_arr);
+		exit(EXIT_SUCCESS);
+	}
+
 
 	pid = fork();
 

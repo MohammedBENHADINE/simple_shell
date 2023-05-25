@@ -17,7 +17,19 @@ char *search_cmd(const char *str)
 	int i = 0;
 	struct stat st;
 
+	(void)i;
+	(void)str_arr;
+	(void)dlm;
+
 	if (stat(str, &st) == 0)
+	{
+		cmd_path = str_dup(str);
+		return (cmd_path);
+	}
+
+
+	/**
+	 * if (stat(str, &st) == 0)
 		return (str_dup(str));
 
 	str_arr = extract_tokens(getenv("PATH"), dlm);
@@ -29,6 +41,7 @@ char *search_cmd(const char *str)
 			return (cmd_path);
 		i++;
 	}
+	*/
 
 	return (NULL);
 }

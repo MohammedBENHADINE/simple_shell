@@ -17,6 +17,8 @@ int main(int argc, char **argv)
 
 	(void)argc;
 
+	signal(SIGINT, handle_signal);
+
 	while (1)
 	{
 		switch (isatty(STDIN_FILENO))

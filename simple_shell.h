@@ -9,6 +9,7 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <errno.h>
+#include <signal.h>
 
 void prompt_handler(void);
 void handle_signal(int signals);

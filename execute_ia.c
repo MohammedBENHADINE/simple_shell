@@ -21,7 +21,10 @@ int execute_ia(char **in_arr, char *self)
 	cmd = get_cmd_ia(in_arr, self);
 
 	if (cmd == NULL)
-		return (0);
+	{
+		free_memory(in_arr);
+		exit(EXIT_SUCCESS);
+	}
 
 	pid = fork();
 

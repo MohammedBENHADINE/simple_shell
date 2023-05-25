@@ -16,7 +16,6 @@ char *read_nia(void)
 	{
 		if (str_len(line_ptr) == 0)
 		{
-			write(STDOUT_FILENO, "\n", 1);
 			fflush(stdout);
 			free(line_ptr);
 			exit(EXIT_SUCCESS);
