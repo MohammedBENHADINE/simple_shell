@@ -9,6 +9,7 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <errno.h>
+#include <signal.h>
 
 void prompt_handler(void);
 void handle_signal(int signals);
@@ -28,4 +29,5 @@ unsigned int _strlen(char *str);
 char *_strcpy(char *dest, char *src);
 int _strint(char *s);
 char *_strcat(char *dest, char *src);
+
 #endif
