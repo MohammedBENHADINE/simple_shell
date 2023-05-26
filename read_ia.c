@@ -14,7 +14,8 @@ char *read_ia(void)
 	ssize_t checked_chars = 0;
 	char *prompt = "#cisfun$";
 
-	write(STDOUT_FILENO, prompt, _strlen(prompt));
+	if (isatty(STDIN_FILENO) == 1)
+		write(STDOUT_FILENO, prompt, _strlen(prompt));
 
 	checked_chars = getline(&buffer, &buffer_size, stdin);
 

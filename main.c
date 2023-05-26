@@ -15,19 +15,18 @@ int main(__attribute((unused)) int argc, char *argv[], char *envp[])
 	ssize_t checked_chars = 0;
 	int loops = 0;
 
+	(void)checked_chars;
+	(void)buffer_size;
+
 	signal(SIGINT, handle_signal);
 
 	while (1)
 	{
 		loops++;
-		prompt_handler();
 
-		checked_chars = getline(&buffer, &buffer_size, stdin);
-		if (checked_chars == EOF)
-			handle_eof(buffer);
-		else if (*buffer == '\n')
-			free(buffer);
-		else
+		buffer = read_ia();
+
+		if (buffer != NULL)
 		{
 			buffer[_strlen(buffer) - 1] = '\0';
 			command = tokenize(buffer, " \0");

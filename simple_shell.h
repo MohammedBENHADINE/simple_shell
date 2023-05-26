@@ -30,4 +30,6 @@ char *_strcpy(char *dest, char *src);
 int _strint(char *s);
 char *_strcat(char *dest, char *src);
 
+char *read_ia(void);
+
 #endif
