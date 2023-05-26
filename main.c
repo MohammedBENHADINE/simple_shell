@@ -11,29 +11,19 @@ int main(__attribute((unused)) int argc, char *argv[], char *envp[])
 {
 	char *buffer = NULL;
 	char **command = NULL;
-	size_t buffer_size = 0;
-	ssize_t checked_chars = 0;
-	int loops = 0;
-
-	(void)checked_chars;
-	(void)buffer_size;
+	int cycls = 0;
 
 	signal(SIGINT, handle_signal);
 
 	while (1)
 	{
-		loops++;
+		cycls++;
 
 		buffer = read_ia();
 
+		command = parse(buffer);
 
-			command = parse(buffer);
+		execute(command, argv[0], envp, cycls);
 
-
-			execute(command, argv[0], envp, loops);
-
-
-
-		buffer = NULL;
 	}
 }
