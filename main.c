@@ -15,11 +15,13 @@ int main(__attribute((unused)) int argc, char *argv[], char *envp[])
 	ssize_t checked_chars = 0;
 	int loops = 0;
 
+	signal(SIGINT, handle_signal);
+
 	while (1)
 	{
 		loops++;
 		prompt_handler();
-		signal(SIGINT, handle_signal);
+
 		checked_chars = getline(&buffer, &buffer_size, stdin);
 		if (checked_chars == EOF)
 			handle_eof(buffer);
