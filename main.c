@@ -33,8 +33,6 @@ int main(__attribute((unused)) int argc, char *argv[], char *envp[])
 			break;
 		}
 
-		free_memory(command);
-		free(user_input);
 	}
 
 	free_memory(command);
