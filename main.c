@@ -34,7 +34,4 @@ int main(__attribute((unused)) int argc, char *argv[], char *envp[])
 		}
 
 	}
-
-	free_memory(command);
-	free(user_input);
 }
