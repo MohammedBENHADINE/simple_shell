@@ -12,7 +12,7 @@ char *read_ia(void)
 	char *buffer = NULL;
 	size_t buffer_size = 0;
 	ssize_t checked_chars = 0;
-	char *prompt = "#cisfun$ ";
+	char *prompt = "#cisfun$";
 
 	write(STDOUT_FILENO, prompt, _strlen(prompt));
 
