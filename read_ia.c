@@ -1,5 +1,4 @@
 #include "simple_shell.h"
-#include <stdio.h>
 
 /**
  * read_ia - reads input from stdin.

@@ -17,13 +17,8 @@ int main(__attribute((unused)) int argc, char *argv[], char *envp[])
 
 	while (1)
 	{
-		cycls++;
-
 		buffer = read_ia();
-
 		command = parse(buffer);
-
-		execute(command, argv[0], envp, cycls);
-
+		execute(command, argv[0], envp, ++cycls);
 	}
 }

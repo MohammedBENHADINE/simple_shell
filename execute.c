@@ -1,7 +1,4 @@
 #include "simple_shell.h"
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <stdio.h>
 
 /**
  * execute - executes a command in a new process
