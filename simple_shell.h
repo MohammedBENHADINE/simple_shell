@@ -32,5 +32,7 @@ char *_strcat(char *dest, char *src);
 
 char *read_ia(void);
 char **parse(char *in_str);
+int execute(char **in_arr, char *self, char **env, int cyc);
+
 
 #endif

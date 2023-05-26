@@ -22,5 +22,7 @@ char **parse(char *in_str)
 	in_str[n - 1] = '\0';
 	token_arr = tokenize(in_str, delimiters);
 
+	free(in_str);
+
 	return (token_arr);
 }

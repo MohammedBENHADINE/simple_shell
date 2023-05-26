@@ -29,14 +29,11 @@ int main(__attribute((unused)) int argc, char *argv[], char *envp[])
 		if (buffer != NULL)
 		{
 			command = parse(buffer);
-			free(buffer);
 
-			if (_strcmp(command[0], "exit") != 0)
-				handle_exit(command);
-			else if (_strcmp(command[0], "cd") != 0)
-				dir_changes(command[1]);
-			else
-				execute_child(command, argv[0], envp, loops);
+
+			execute(command, argv[0], envp, loops);
+
+
 		}
 
 		buffer = NULL, buffer_size = 0;
