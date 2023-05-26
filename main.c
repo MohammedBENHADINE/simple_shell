@@ -9,35 +9,34 @@
  */
 int main(__attribute((unused)) int argc, char *argv[], char *envp[])
 {
-	char *buffer = NULL;
+	char *user_input = NULL;
 	char **command = NULL;
-	size_t buffer_size = 0;
-	ssize_t checked_chars = 0;
-	int loops = 0;
+	int cycl = 0;
+
+	signal(SIGINT, handle_signal);
 
 	while (1)
 	{
-		loops++;
-		prompt_handler();
-		signal(SIGINT, handle_signal);
-		checked_chars = getline(&buffer, &buffer_size, stdin);
-		if (checked_chars == EOF)
-			handle_eof(buffer);
-		else if (*buffer == '\n')
-			free(buffer);
-		else
+		cycl++;
+
+		switch (isatty(STDIN_FILENO))
 		{
-			buffer[_strlen(buffer) - 1] = '\0';
-			command = tokenize(buffer, " \0");
-			free(buffer);
-			if (_strcmp(command[0], "exit") != 0)
-				handle_exit(command);
-			else if (_strcmp(command[0], "cd") != 0)
-				dir_changes(command[1]);
-			else
-				execute_child(command, argv[0], envp, loops);
+		case 0: /*non-interactive mode*/
+			user_input = read_nia();
+			command = parse(user_input);
+			execute(command, argv[0], envp, cycl);
+			break;
+		case 1: /*interactive mode*/
+			user_input = read_ia();
+			command = parse(user_input);
+			execute(command, argv[0], envp, cycl);
+			break;
 		}
-		fflush(stdin);
-		buffer = NULL, buffer_size = 0;
+
+		free_memory(command);
+		free(user_input);
 	}
+
+	free_memory(command);
+	free(user_input);
 }

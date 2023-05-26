@@ -6,17 +6,16 @@
  * @command: Tokenized command.
  * @shell_name: The name of the shell.
  * @env: Environmental variables.
- * @loops: Number of executed cycles.
+ * @cyc: Number of executed cycles.
  * Return: Nothing
  */
-void execute_command(char **command, char *shell_name, char **env, int loops)
+void execute_command(char **command, char *shell_name, char **env, int cyc)
 {
 	char **pathways = NULL, *full_path = NULL;
 	struct stat st;
 	unsigned int i = 0;
 
-	if (_strcmp(command[0], "env") != 0)
-		print_env(env);
+
 	if (stat(command[0], &st) == 0)
 	{
 		if (execve(command[0], command, env) < 0)
@@ -43,7 +42,7 @@ void execute_command(char **command, char *shell_name, char **env, int loops)
 				return;
 			}
 		}
-		command_error(shell_name, loops, command);
+		command_error(shell_name, cyc, command);
 		free_memory(pathways);
 	}
 }

@@ -30,4 +30,9 @@ char *_strcpy(char *dest, char *src);
 int _strint(char *s);
 char *_strcat(char *dest, char *src);
 
+char *read_ia(void);
+char *read_nia(void);
+char **parse(char *in_str);
+int execute(char **in_arr, char *self, char **env, int loops);
+
 #endif
