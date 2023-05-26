@@ -29,6 +29,8 @@ unsigned int _strlen(char *str);
 char *_strcpy(char *dest, char *src);
 int _strint(char *s);
 char *_strcat(char *dest, char *src);
+char *_strchr(const char *str, const char c);
+int _strspn(const char* s, const char* charset);
 
 char *read_ia(void);
 char **parse(char *in_str);

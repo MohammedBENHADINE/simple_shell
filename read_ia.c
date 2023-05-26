@@ -11,7 +11,7 @@ char *read_ia(void)
 	char *buffer = NULL;
 	size_t buffer_size = 0;
 	ssize_t checked_chars = 0;
-	char *prompt = "#cisfun$";
+	char *prompt = "#cisfun$ ";
 
 	if (isatty(STDIN_FILENO) == 1)
 		write(STDOUT_FILENO, prompt, _strlen(prompt));
@@ -26,6 +26,13 @@ char *read_ia(void)
 	{
 		free(buffer);
 		buffer = NULL;
+	}
+
+	if (_strlen(buffer) == (unsigned int)_strspn(buffer, " ") + 1)
+	{
+		free(buffer);
+		buffer = NULL;
+		exit(EXIT_SUCCESS);
 	}
 
 	return (buffer);
