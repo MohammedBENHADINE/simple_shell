@@ -26,16 +26,14 @@ int main(__attribute((unused)) int argc, char *argv[], char *envp[])
 
 		buffer = read_ia();
 
-		if (buffer != NULL)
-		{
+
 			command = parse(buffer);
 
 
 			execute(command, argv[0], envp, loops);
 
 
-		}
 
-		buffer = NULL, buffer_size = 0;
+		buffer = NULL;
 	}
 }
