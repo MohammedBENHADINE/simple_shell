@@ -31,5 +31,6 @@ int _strint(char *s);
 char *_strcat(char *dest, char *src);
 
 char *read_ia(void);
+char **parse(char *in_str);
 
 #endif

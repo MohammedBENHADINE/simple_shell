@@ -28,9 +28,9 @@ int main(__attribute((unused)) int argc, char *argv[], char *envp[])
 
 		if (buffer != NULL)
 		{
-			buffer[_strlen(buffer) - 1] = '\0';
-			command = tokenize(buffer, " \0");
+			command = parse(buffer);
 			free(buffer);
+
 			if (_strcmp(command[0], "exit") != 0)
 				handle_exit(command);
 			else if (_strcmp(command[0], "cd") != 0)
@@ -38,7 +38,7 @@ int main(__attribute((unused)) int argc, char *argv[], char *envp[])
 			else
 				execute_child(command, argv[0], envp, loops);
 		}
-		fflush(stdin);
+
 		buffer = NULL, buffer_size = 0;
 	}
 }
