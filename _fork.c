@@ -32,8 +32,6 @@ void execute_child(char *cmd, char **command, char *name, char **envp)
 			freeMem_and_exit(command);
 		}
 	}
-
-	free_memory(command);
 }
 
 

@@ -36,9 +36,12 @@ int execute(char **in_arr, char *self, char **env, int cyc)
 	if (cmd == NULL)
 	{
 		command_error(self, cyc, in_arr);
-		free(cmd);
-		free_memory(in_arr);
-		exit(127);
+		if (isatty(STDIN_FILENO) == 0)
+		{
+			free(cmd);
+			free_memory(in_arr);
+			exit(127);
+		}
 	}
 
 	execute_child(cmd, in_arr, self, env);

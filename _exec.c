@@ -18,7 +18,6 @@ void execute_command(char *cmd, char **command, char *shell_name, char **env)
 		if (execve(cmd, command, env) < 0)
 		{
 			perror(shell_name);
-			free(cmd);
 			freeMem_and_exit(command);
 		}
 	}
