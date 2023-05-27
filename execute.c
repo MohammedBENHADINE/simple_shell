@@ -29,6 +29,12 @@ int execute(char **in_arr, char *self, char **env, int cyc)
 		return (0);
 	}
 
+	if (search_cmd(in_arr[0], env) == NULL)
+	{
+		command_error(self, cyc, in_arr);
+		exit(127);
+	}
+
 	execute_child(in_arr, self, env, cyc);
 
 	return (0);

@@ -35,6 +35,7 @@ int _strspn(const char* s, const char* charset);
 char *read_ia(void);
 char **parse(char *in_str);
 int execute(char **in_arr, char *self, char **env, int cyc);
-
+int count_tokens(const char *str, const char *dlm);
+char *search_cmd(char *str, char **env);
 
 #endif

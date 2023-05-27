@@ -15,8 +15,6 @@ void execute_command(char **command, char *shell_name, char **env, int loops)
 	struct stat st;
 	unsigned int i = 0;
 
-	if (_strcmp(command[0], "env") != 0)
-		print_env(env);
 	if (stat(command[0], &st) == 0)
 	{
 		if (execve(command[0], command, env) < 0)
