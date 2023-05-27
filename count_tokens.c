@@ -11,7 +11,12 @@
 int count_tokens(const char *str, const char *dlm)
 {
 	int i = 0, count = 0;
-	short istoken = _strchr(dlm, str[i]) == NULL ? 0 : 1;
+	short istoken;
+
+	if (str == NULL)
+		return (0);
+
+	istoken = _strchr(dlm, str[i]) == NULL ? 0 : 1;
 
 	while (str[i] != '\0')
 	{

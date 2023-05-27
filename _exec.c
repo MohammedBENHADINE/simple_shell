@@ -3,46 +3,24 @@
 /**
  * execute_command - This function executes a command.
  *
+ * @cmd: command.
  * @command: Tokenized command.
  * @shell_name: The name of the shell.
  * @env: Environmental variables.
- * @loops: Number of executed cycles.
  * Return: Nothing
  */
-void execute_command(char **command, char *shell_name, char **env, int loops)
+void execute_command(char *cmd, char **command, char *shell_name, char **env)
 {
-	char **pathways = NULL, *full_path = NULL;
 	struct stat st;
-	unsigned int i = 0;
 
-	if (stat(command[0], &st) == 0)
+	if (stat(cmd, &st) == 0)
 	{
-		if (execve(command[0], command, env) < 0)
+		if (execve(cmd, command, env) < 0)
 		{
 			perror(shell_name);
+			free(cmd);
 			freeMem_and_exit(command);
 		}
-	}
-	else
-	{
-		pathways = _dirsPATH(env);
-		while (pathways[i])
-		{
-			full_path = _strcat(pathways[i], command[0]);
-			i++;
-			if (stat(full_path, &st) == 0)
-			{
-				if (execve(full_path, command, env) < 0)
-				{
-					perror(shell_name);
-					free_memory(pathways);
-					freeMem_and_exit(command);
-				}
-				return;
-			}
-		}
-		command_error(shell_name, loops, command);
-		free_memory(pathways);
 	}
 }
 
@@ -80,6 +58,7 @@ char **_dirsPATH(char **env)
 	unsigned int i = 0;
 
 	pathvalue = strtok(env[i], "=");
+
 	while (env[i])
 	{
 		if (_strcmp(pathvalue, "PATH"))

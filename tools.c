@@ -62,15 +62,26 @@ char *_strcpy(char *dest, char *src)
  */
 char *_strcat(char *dest, char *src)
 {
-	char *mix = dest;
+	int size1 = _strlen(dest);
+	int size2 = _strlen(src);
+	char *new_str = malloc(sizeof(char) * (size1 + size2 + 1));
 
-	while (*dest)
-		dest++;
+	if (new_str == NULL)
+	{
+		return (NULL);
+	}
+	else
+	{
+		int i, j;
 
-	*dest++ = '/';
-	while (*src)
-		*dest++ = *src++;
-	return (mix);
+		for (i = 0; i < size1; i++)
+			new_str[i] = dest[i];
+
+		for (j = i; j < (size1 + size2); j++)
+			new_str[j] = src[j - i];
+	}
+
+	return (new_str);
 }
 
 

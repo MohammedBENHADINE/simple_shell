@@ -3,13 +3,13 @@
 /**
  * execute_child - A execute_child function to create a child process.
  *
+ * @cmd: command.
  * @command: Tokenized pointer command arguments.
  * @name: Pointer of the name of the shell.
  * @envp: Environmental variables.
- * @loops: number of times for executed loops.
  * Return: Nothing.
  */
-void execute_child(char **command, char *name, char **envp, int loops)
+void execute_child(char *cmd, char **command, char *name, char **envp)
 {
 	int pid, status;
 
@@ -21,7 +21,7 @@ void execute_child(char **command, char *name, char **envp, int loops)
 	}
 	else if (pid == 0)
 	{
-		execute_command(command, name, envp, loops);
+		execute_command(cmd, command, name, envp);
 		free_memory(command);
 	}
 	else

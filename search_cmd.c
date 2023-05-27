@@ -12,16 +12,12 @@
 */
 char *search_cmd(char *str, char **env)
 {
-	char *dlm = ":";
 	char **str_arr = { NULL };
 	char *cmd_path = NULL;
-	int i = 0;
+	int i = 0, count = 0;
 	struct stat st;
 
 	if (str == NULL)
-		return (NULL);
-
-	if (count_tokens(str, dlm) == 0)
 		return (NULL);
 
 	if (stat(str, &st) == 0)
@@ -29,6 +25,16 @@ char *search_cmd(char *str, char **env)
 
 	str_arr = _dirsPATH(env);
 
+	if (str_arr == NULL)
+		return (NULL);
+
+	while (str_arr[i++] != NULL)
+		count++;
+
+	if (count <= 0)
+		return (NULL);
+
+	i = 0;
 	while (str_arr[i] != NULL)
 	{
 		cmd_path = _strcat(str_arr[i], _strcat("/", str));

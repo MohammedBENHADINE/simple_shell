@@ -11,6 +11,8 @@
 */
 int execute(char **in_arr, char *self, char **env, int cyc)
 {
+	char *cmd = NULL;
+
 	if (in_arr == NULL)
 		return (0);
 
@@ -29,13 +31,17 @@ int execute(char **in_arr, char *self, char **env, int cyc)
 		return (0);
 	}
 
-	if (search_cmd(in_arr[0], env) == NULL)
+	cmd = search_cmd(in_arr[0], env);
+
+	if (cmd == NULL)
 	{
 		command_error(self, cyc, in_arr);
+		free(cmd);
+		free_memory(in_arr);
 		exit(127);
 	}
 
-	execute_child(in_arr, self, env, cyc);
+	execute_child(cmd, in_arr, self, env);
 
 	return (0);
 }
