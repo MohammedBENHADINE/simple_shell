@@ -43,9 +43,6 @@ void handle_exit(char **input_command)
 {
 	int status = 0;
 
-	if (errno == 25)
-		status = 2;
-
 	if (input_command[1] != NULL)
 		status = _strint(input_command[1]);
 
