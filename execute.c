@@ -17,7 +17,10 @@ int execute(char **in_arr, char *self, char **env, int cyc)
 		return (0);
 
 	if (_strcmp(in_arr[0], "exit") != 0)
+	{
 		handle_exit(in_arr);
+	}
+
 
 	if (_strcmp(in_arr[0], "cd") != 0)
 	{
